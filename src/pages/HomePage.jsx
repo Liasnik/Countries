@@ -10,9 +10,6 @@ export const HomePage = ({ countries, setCountries }) => {
   const [countriesFiltered, setCountriesFiltered] = useState(countries)
   const navigate = useNavigate()
 
-  console.log(countriesFiltered)
-  console.log(countries)
-
   const handleSearch = (search, region) => {
     let data = [...countries]
 
@@ -44,7 +41,7 @@ export const HomePage = ({ countries, setCountries }) => {
         {countriesFiltered.map((country) => (
           <Card
             key={country.name.common}
-            img={country.flags.png}
+            img={country.flags.svg}
             name={country.name.common}
             info={[
               { title: 'Capital', description: country.capital },
@@ -62,26 +59,3 @@ export const HomePage = ({ countries, setCountries }) => {
     </div>
   )
 }
-
-// можно и вот так отмэпить:
-// countries.map((country) => {
-//  const countryInfo = {
-//     img: country.flags.png,
-//     name:country.name.common,
-//     info: [
-//       {
-//         title: 'Population',
-//         description: country.population.toLocaleString(),
-//       },
-//       {
-//         title: 'Capital',
-//         description: country.capital },
-//       {
-//         title: 'Region',
-//         description: country.region },
-//     ]
-//  };
-//   return (
-//   <Card key={country.name.common} {...countryInfo}/>
-//   )
-// })

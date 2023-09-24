@@ -15,14 +15,15 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 2rem 0;
   color: var(--color-text);
-  font-size: var(--fs-sm);
+  font-size: var(--font-size-sm);
 `
 
 const Title = styled(Link).attrs({
-  to: '/',
+  to: '/Countries',
 })`
   color: var(--color-text);
-  font-size: var(--fs-sm);
+  font-size: var(--font-size-big);
+  font-weight: var(--fw-bold);
   text-decoration: none;
   font-weight: var(fw-bold);
 `
@@ -48,7 +49,7 @@ export const Header = () => {
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Where in the world?</Title>
+          <Title>Countries</Title>
           <ModeSwitcher onClick={toggleTheme}>
             {theme === 'light' ? (
               <IoSunnyOutline size="18px" />

@@ -6,12 +6,17 @@ const Wrapper = styled.article`
   box-shadow: var(--shadow);
   cursor: pointer;
   overflow: hidden;
+  margin-bottom: 30px;
+
+  @media (min-width: 767px) {
+    margin-bottom: 0;
+  }
 `
 
 const CardImage = styled.img`
   display: block;
   width: 100%;
-  height: 150px;
+
   object-fit: cover;
   object-position: center;
 `
