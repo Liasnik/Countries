@@ -6,6 +6,10 @@ import styled from 'styled-components'
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg);
+  padding: 20px 15px;
 
   @media (min-width: 767px) {
     flex-direction: row;
@@ -14,10 +18,10 @@ const Wrapper = styled.div`
   }
 `
 const options = [
-  { value: 'Africa', label: 'Africa' },
+  { value: 'Europe', label: 'Europe' },
   { value: 'Americas', label: 'America' },
   { value: 'Asia', label: 'Asia' },
-  { value: 'Europe', label: 'Europe' },
+  { value: 'Africa', label: 'Africa' },
   { value: 'Oceania', label: 'Oceania' },
   { value: 'Antarctic', label: 'Antarctic' },
 ]

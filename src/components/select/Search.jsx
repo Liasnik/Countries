@@ -7,7 +7,7 @@ const InputContainer = styled.label`
   display: flex;
   align-items: center;
   border-radius: var(--radius);
-  box-shadow: var(--shadow-input);
+  box-shadow: var(--shadow);
   margin-bottom: 20px;
   width: 100%;
 

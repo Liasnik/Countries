@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom'
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
-  background-color: (--colors-ui-base);
+  background-color: var(--color-ui-base);
 `
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 32px 15px;
   color: var(--color-text);
   font-size: var(--font-size-sm);
 `
@@ -49,7 +49,7 @@ export const Header = () => {
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Countries</Title>
+          <Title>Countries </Title>
           <ModeSwitcher onClick={toggleTheme}>
             {theme === 'light' ? (
               <IoSunnyOutline size="18px" />

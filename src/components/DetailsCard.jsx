@@ -53,9 +53,14 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   line-height: 1.8;
+  letter-spacing: 1.5px;
 
   & > b {
     font-weight: var(--fw-bold);
+  }
+
+  & > a {
+    color: var(--color-text);
   }
 `
 
@@ -84,8 +89,9 @@ const TagGroup = styled.div`
 const Tag = styled.span`
   padding: 5px 10px;
   background-color: var(--color-ui-base);
-  box-shadow: var(--shadow-input);
+  box-shadow: var(--shadow-button);
   cursor: pointer;
+  border-radius: var(--radius-sm);
 `
 
 export const DetailsCard = ({ country }) => {
@@ -99,28 +105,71 @@ export const DetailsCard = ({ country }) => {
         .then(({ data }) => setBordering(data))
   }, [country.borders])
 
+  let people
+  const lastNumber = country.population % 10
+  if (lastNumber === 2 || lastNumber === 3 || lastNumber === 4) {
+    people = 'человека'
+  } else people = 'человек'
+  console.log(lastNumber)
+
+  // //const lastNumber = country.population.toString().split('').slice(-1)
+  // const lastNumber = country.population.toString().split('').pop()
+  // if (lastNumber === '2' || lastNumber === '3' || lastNumber === '4') {
+  //   people = 'человека'
+  // } else people = 'человек'
+  // console.log(lastNumber)
+
+  // const array = country.population.toString().split('')
+  // const lastNumber = array[array.length - 1]
+  // if (array === '2' || lastNumber === '3' || lastNumber === '4') {
+  //   people = 'человека'
+  // } else people = 'человек'
+  // console.log(array[array.length - 1])
+
   return (
     <Wrapper>
       <CardImage src={country.flags.svg} alt={country.flag.alt} />
       <div>
-        <CardTitle>{country.name.official}</CardTitle>
+        <CardTitle>{country.name.common}</CardTitle>
         <ListGroup>
           <List>
             <ListItem>
-              <b>Capital</b> {country.capital}
+              Capital <b>{country.capital}</b>
             </ListItem>
             <ListItem>
-              <b>Native Name</b> {country.nativeName}
+              Official Name <b>{country.name.official}</b>
+            </ListItem>
+            <hr />
+            <ListItem>Alternative Spellings:</ListItem>
+            <ListItem>
+              <b>{country.altSpellings[0]}</b>
             </ListItem>
             <ListItem>
-              <b>Region</b> {country.region}
+              <b>{country.altSpellings[1]}</b>
             </ListItem>
             <ListItem>
-              <b>Population</b> {country.population}
+              <b>{country.altSpellings[2]}</b>
+            </ListItem>
+            <hr />
+            <ListItem>
+              Region <b>{country.region}</b>
+            </ListItem>
+            <ListItem>
+              Population <b>{country.population.toLocaleString()}</b> {people}
+            </ListItem>
+            <ListItem>
+              Subregion <b>{country.subregion}</b>
             </ListItem>
 
             <ListItem>
-              <b>Subregion</b> {country.subregion}
+              Driving <b>{country.car.side}</b>
+            </ListItem>
+            <hr />
+            <ListItem>
+              <a href={country.maps.googleMaps}>Google Maps</a>
+            </ListItem>
+            <ListItem>
+              <a href={country.maps.openStreetMaps}>Open Street Maps</a>
             </ListItem>
           </List>
           {/* <List>
@@ -130,17 +179,18 @@ export const DetailsCard = ({ country }) => {
           ))}
         </List> */}
           {/* <List>
-          <b>Currency</b>{' '}
-          {currencies.map((c) => (
-            <span key={c.code}>{c.name} </span>
-          ))}
-        </List>
-        <List>
-          <b>Language</b>{' '}
-          {languages.map((l) => (
-            <span key={l.name}>{l.name}</span>
-          ))}
-        </List> */}
+            <b>Currency</b>{' '}
+            {country.currencies.map((c) => (
+              <span key={c.code}>{c.name} </span>
+            ))}
+          </List> */}
+          <List>
+            {/* <b>Language</b>{' '} */}
+            {/* {country.languages.map((l) => (
+              <span key={l.name}>{l.name}</span>
+            ))} */}
+            {/* {country.languages.mkd} */}
+          </List>
         </ListGroup>
         <Meta>
           <b>Border Countries</b>

@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import { Container } from './Container'
 
 const Wrapper = styled.main`
-  padding: 32px 0;
+  padding: 22px 0;
 
   @media (min-width: 767px) {
-    padding: 64px 0;
+    padding: 44px 0;
   }
 `
 
