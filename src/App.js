@@ -8,19 +8,28 @@ import { useState } from 'react'
 
 function App() {
   const [countries, setCountries] = useState([])
+  const [language, setLanguage] = useState(false)
 
   return (
     <>
-      <Header />
+      <Header language={language} setLanguage={setLanguage} />
       <Main>
         <Routes>
           <Route
             path="/Countries"
             element={
-              <HomePage countries={countries} setCountries={setCountries} />
+              <HomePage
+                language={language}
+                setLanguage={setLanguage}
+                countries={countries}
+                setCountries={setCountries}
+              />
             }
           />
-          <Route path="country/:name" element={<Details />} />
+          <Route
+            path="country/:name"
+            element={<Details language={language} />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Main>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { filterByCode } from '../config'
 
 const Wrapper = styled.section`
-  margin-top: 48px;
+  margin: 48px 0 30px;
   width: 100%;
   display: grid;
   grid-template-columns: 100%;
@@ -30,19 +30,19 @@ const CardImage = styled.img`
 `
 
 const CardTitle = styled.h1`
-  margin: 0;
+  margin: 20px 0;
   font-weight: var(--fw-normal);
 `
 
 const ListGroup = styled.div`
  display: flex;
  flex-direction: column;
-
- gap: 32px;
+ padding-bottom: 18px;
+ gap: 18px;
 
  @media (min-width: 1024px) {
-    flex-direction: row;
-    gap: 64px;
+  padding-bottom: 25px;
+    gap: 25px;
 `
 
 const List = styled.ul`
@@ -64,19 +64,25 @@ const ListItem = styled.li`
   }
 `
 
+const Maps = styled.div``
+
 const Meta = styled.div`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 
   & > b {
     font-weight: var(--fw-bold);
+    margin-bottom: 10px;
   }
 
   @media (min-width: 767px) {
     flex-direction: row;
     align-items: center;
     gap: 20px;
+  }
+  @media (min-width: 1024px) {
+    margin-top: 10px;
   }
 `
 
@@ -94,7 +100,7 @@ const Tag = styled.span`
   border-radius: var(--radius-sm);
 `
 
-export const DetailsCard = ({ country }) => {
+export const DetailsCard = ({ country, language }) => {
   const [bordering, setBordering] = useState([])
   const navigate = useNavigate()
 
@@ -108,23 +114,9 @@ export const DetailsCard = ({ country }) => {
   let people
   const lastNumber = country.population % 10
   if (lastNumber === 2 || lastNumber === 3 || lastNumber === 4) {
-    people = 'человека'
-  } else people = 'человек'
+    people = 'особи'
+  } else people = 'осіб'
   console.log(lastNumber)
-
-  // //const lastNumber = country.population.toString().split('').slice(-1)
-  // const lastNumber = country.population.toString().split('').pop()
-  // if (lastNumber === '2' || lastNumber === '3' || lastNumber === '4') {
-  //   people = 'человека'
-  // } else people = 'человек'
-  // console.log(lastNumber)
-
-  // const array = country.population.toString().split('')
-  // const lastNumber = array[array.length - 1]
-  // if (array === '2' || lastNumber === '3' || lastNumber === '4') {
-  //   people = 'человека'
-  // } else people = 'человек'
-  // console.log(array[array.length - 1])
 
   return (
     <Wrapper>
@@ -134,13 +126,20 @@ export const DetailsCard = ({ country }) => {
         <ListGroup>
           <List>
             <ListItem>
-              Capital <b>{country.capital}</b>
+              {language ? 'Capital' : 'Столиця'} <b>{country.capital}</b>
             </ListItem>
             <ListItem>
-              Official Name <b>{country.name.official}</b>
+              {language ? 'Official Name' : 'Офіційна назва'}{' '}
+              <b>{country.name.official}</b>
             </ListItem>
-            <hr />
-            <ListItem>Alternative Spellings:</ListItem>
+          </List>
+
+          <List>
+            <ListItem>
+              {language
+                ? 'Alternative Spellings:'
+                : 'Альтернативні варіанти написання:'}
+            </ListItem>
             <ListItem>
               <b>{country.altSpellings[0]}</b>
             </ListItem>
@@ -150,52 +149,47 @@ export const DetailsCard = ({ country }) => {
             <ListItem>
               <b>{country.altSpellings[2]}</b>
             </ListItem>
-            <hr />
-            <ListItem>
-              Region <b>{country.region}</b>
-            </ListItem>
-            <ListItem>
-              Population <b>{country.population.toLocaleString()}</b> {people}
-            </ListItem>
-            <ListItem>
-              Subregion <b>{country.subregion}</b>
-            </ListItem>
+          </List>
 
+          <List>
             <ListItem>
-              Driving <b>{country.car.side}</b>
-            </ListItem>
-            <hr />
-            <ListItem>
-              <a href={country.maps.googleMaps}>Google Maps</a>
+              {language ? 'Region' : 'Регіон'} <b>{country.region}</b>
             </ListItem>
             <ListItem>
-              <a href={country.maps.openStreetMaps}>Open Street Maps</a>
+              {language ? 'Subregion' : 'Субрегіон'} <b>{country.subregion}</b>
+            </ListItem>
+            <ListItem>
+              {language ? 'Population' : 'Населення'}{' '}
+              <b>{country.population.toLocaleString()}</b> {people}
+            </ListItem>
+            <ListItem>
+              {language ? 'Driving' : 'Сторона дорожнього руху'}{' '}
+              <b>{country.car.side}</b>
             </ListItem>
           </List>
-          {/* <List>
-          <b>Top Level Domain</b>{' '}
-          {tlds.map((domain) => (
-            <span key={domain}>{domain} </span>
-          ))}
-        </List> */}
-          {/* <List>
-            <b>Currency</b>{' '}
-            {country.currencies.map((c) => (
-              <span key={c.code}>{c.name} </span>
-            ))}
-          </List> */}
+
           <List>
-            {/* <b>Language</b>{' '} */}
-            {/* {country.languages.map((l) => (
-              <span key={l.name}>{l.name}</span>
-            ))} */}
-            {/* {country.languages.mkd} */}
+            <ListItem>
+              <a href={country.maps.googleMaps}>
+                {language ? 'Google Maps' : 'Google Карти'}
+              </a>
+            </ListItem>
+            <ListItem>
+              <a href={country.maps.openStreetMaps}>
+                {language ? 'Open Street Maps' : 'Open Street Карти'}
+              </a>
+            </ListItem>
           </List>
         </ListGroup>
         <Meta>
-          <b>Border Countries</b>
+          {language ? 'Border Countries' : 'Прикордонні країни'}
+          <b></b>
           {!country.borders ? (
-            <span>There isn't border countries</span>
+            <span>
+              {language
+                ? 'There isn`t border countries'
+                : 'Немає прикордонних країн'}
+            </span>
           ) : (
             <TagGroup>
               {bordering &&

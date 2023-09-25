@@ -19,7 +19,6 @@ const InputContainer = styled.label`
 
 const Input = styled.input.attrs({
   type: 'search',
-  placeholder: 'Search for country',
 })`
   background-color: var(--color-ui-base);
   color: var(--color-text);
@@ -28,11 +27,15 @@ const Input = styled.input.attrs({
   margin-left: 22px;
 `
 
-const Search = ({ search, setSearch }) => {
+const Search = ({ search, setSearch, language }) => {
   return (
     <InputContainer>
       <IoSearch />
-      <Input onChange={(e) => setSearch(e.target.value)} value={search} />
+      <Input
+        onChange={(e) => setSearch(e.target.value)}
+        value={search}
+        placeholder={language ? 'Search for country' : 'Пошук по країні'}
+      />
     </InputContainer>
   )
 }

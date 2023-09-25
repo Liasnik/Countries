@@ -26,7 +26,7 @@ const options = [
   { value: 'Antarctic', label: 'Antarctic' },
 ]
 
-export const Controls = ({ onSearch }) => {
+export const Controls = ({ onSearch, language }) => {
   const [search, setSearch] = useState('')
   const [region, setRegion] = useState('')
   console.log(region)
@@ -39,10 +39,12 @@ export const Controls = ({ onSearch }) => {
 
   return (
     <Wrapper>
-      <Search search={search} setSearch={setSearch} />
+      <Search search={search} setSearch={setSearch} language={language} />
       <CustomSelect
         options={options}
-        placeholder="Filter by region"
+        placeholder={
+          language ? 'Filter by region' : 'Відфільртувати по регіону'
+        }
         isClearable
         isSearchable={false}
         value={region}

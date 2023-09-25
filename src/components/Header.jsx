@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { Container } from './Container'
 import { IoSunnyOutline, IoMoonOutline } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
+import { Button } from './Button'
 
 const HeaderEl = styled.header`
   box-shadow: var(--shadow);
@@ -28,14 +29,22 @@ const Title = styled(Link).attrs({
   font-weight: var(fw-bold);
 `
 
+const RightBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`
+
 const ModeSwitcher = styled.div`
   display: flex;
+  align-items: center;
   gap: 0.7rem;
   cursor: pointer;
   text-transform: capitalize;
+  width: 125px;
 `
 
-export const Header = () => {
+export const Header = ({ setLanguage, language }) => {
   const [theme, setTheme] = useState('dark')
 
   const toggleTheme = () => {
@@ -49,15 +58,25 @@ export const Header = () => {
     <HeaderEl>
       <Container>
         <Wrapper>
-          <Title>Countries </Title>
-          <ModeSwitcher onClick={toggleTheme}>
-            {theme === 'light' ? (
-              <IoSunnyOutline size="18px" />
-            ) : (
-              <IoMoonOutline size="16px" />
-            )}
-            <span>{theme} Theme</span>
-          </ModeSwitcher>
+          <Title>{language ? 'Countries' : 'Країни'} </Title>
+          <RightBlock>
+            <Button onClick={() => setLanguage(!language)}>
+              {language ? 'UA' : 'EN'}
+            </Button>
+            <ModeSwitcher onClick={toggleTheme}>
+              {theme === 'dark' ? (
+                <>
+                  <IoSunnyOutline size="18px" />
+                  <span>{language ? 'light Mode' : 'світла тема'}</span>
+                </>
+              ) : (
+                <>
+                  <IoMoonOutline size="16px" />
+                  <span>{language ? 'dark Mode' : 'темний режим'}</span>
+                </>
+              )}
+            </ModeSwitcher>
+          </RightBlock>
         </Wrapper>
       </Container>
     </HeaderEl>

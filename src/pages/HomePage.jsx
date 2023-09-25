@@ -6,7 +6,7 @@ import { List } from '../components/List'
 import { Card } from '../components/Card'
 import { Controls } from '../components/select/Controls'
 
-export const HomePage = ({ countries, setCountries }) => {
+export const HomePage = ({ countries, setCountries, language }) => {
   const [countriesFiltered, setCountriesFiltered] = useState(countries)
   const navigate = useNavigate()
 
@@ -36,7 +36,7 @@ export const HomePage = ({ countries, setCountries }) => {
 
   return (
     <div>
-      <Controls onSearch={handleSearch} />
+      <Controls onSearch={handleSearch} language={language} />
       <List>
         {countriesFiltered.map((country) => (
           <Card
@@ -44,13 +44,19 @@ export const HomePage = ({ countries, setCountries }) => {
             img={country.flags.svg}
             name={country.name.common}
             info={[
-              { title: 'Capital', description: country.capital },
               {
-                title: 'Population',
+                title: language ? 'Capital' : 'Столиця',
+                description: country.capital,
+              },
+              {
+                title: language ? 'Population' : 'Населення',
                 description: country.population.toLocaleString(),
               },
 
-              { title: 'Region', description: country.region },
+              {
+                title: language ? 'Region' : 'Регіон',
+                description: country.region,
+              },
             ]}
             onClick={() => navigate(`/country/${country.name.common}`)}
           />

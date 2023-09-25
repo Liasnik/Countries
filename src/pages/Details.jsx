@@ -3,10 +3,10 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { IoArrowBack } from 'react-icons/io5'
 import { searchByCountry } from '../config'
-import { Button } from '../components/Batton'
+import { Button } from '../components/Button'
 import { DetailsCard } from '../components/DetailsCard'
 
-export const Details = () => {
+export const Details = ({ language }) => {
   const { name } = useParams()
   const navigate = useNavigate()
   const [country, setCountry] = useState(null)
@@ -25,9 +25,9 @@ export const Details = () => {
       <Button onClick={handleGoBack}>
         {' '}
         <IoArrowBack />
-        Back
+        {language ? 'Back' : 'назад'}
       </Button>
-      {country && <DetailsCard country={country} />}
+      {country && <DetailsCard country={country} language={language} />}
     </div>
   )
 }
