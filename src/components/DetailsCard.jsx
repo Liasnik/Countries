@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { filterByCode } from '../config'
 
 const Wrapper = styled.section`
-  margin: 48px 0 30px;
+  margin: 48px 0 40px;
   width: 100%;
   display: grid;
   grid-template-columns: 100%;
@@ -64,8 +64,6 @@ const ListItem = styled.li`
   }
 `
 
-const Maps = styled.div``
-
 const Meta = styled.div`
   display: flex;
   flex-direction: column;
@@ -73,7 +71,7 @@ const Meta = styled.div`
 
   & > b {
     font-weight: var(--fw-bold);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   @media (min-width: 767px) {
@@ -113,10 +111,11 @@ export const DetailsCard = ({ country, language }) => {
 
   let people
   const lastNumber = country.population % 10
-  if (lastNumber === 2 || lastNumber === 3 || lastNumber === 4) {
-    people = 'особи'
-  } else people = 'осіб'
-  console.log(lastNumber)
+  if (lastNumber === 1) {
+    people = language ? 'people' : 'особа'
+  } else if (lastNumber === 2 || lastNumber === 3 || lastNumber === 4) {
+    people = language ? 'people' : 'особи'
+  } else people = language ? 'people' : 'осіб'
 
   return (
     <Wrapper>
@@ -126,10 +125,10 @@ export const DetailsCard = ({ country, language }) => {
         <ListGroup>
           <List>
             <ListItem>
-              {language ? 'Capital' : 'Столиця'} <b>{country.capital}</b>
+              {language ? 'Capital: ' : 'Столиця: '} <b>{country.capital}</b>
             </ListItem>
             <ListItem>
-              {language ? 'Official Name' : 'Офіційна назва'}{' '}
+              {language ? 'Official Name:' : 'Офіційна назва:'}{' '}
               <b>{country.name.official}</b>
             </ListItem>
           </List>
@@ -153,17 +152,22 @@ export const DetailsCard = ({ country, language }) => {
 
           <List>
             <ListItem>
-              {language ? 'Region' : 'Регіон'} <b>{country.region}</b>
+              {language ? 'Region:' : 'Регіон:'} <b>{country.region}</b>
             </ListItem>
             <ListItem>
-              {language ? 'Subregion' : 'Субрегіон'} <b>{country.subregion}</b>
+              {language ? 'Subregion:' : 'Субрегіон:'}{' '}
+              <b>{country.subregion}</b>
             </ListItem>
             <ListItem>
-              {language ? 'Population' : 'Населення'}{' '}
+              {language ? 'Population:' : 'Населення:'}{' '}
               <b>{country.population.toLocaleString()}</b> {people}
             </ListItem>
             <ListItem>
-              {language ? 'Driving' : 'Сторона дорожнього руху'}{' '}
+              {language ? 'Independent:' : 'незалежність:'}{' '}
+              <b>{country.independent ? 'yes' : 'no'}</b>
+            </ListItem>
+            <ListItem>
+              {language ? 'Driving:' : 'Сторона дорожнього руху:'}{' '}
               <b>{country.car.side}</b>
             </ListItem>
           </List>
@@ -171,18 +175,18 @@ export const DetailsCard = ({ country, language }) => {
           <List>
             <ListItem>
               <a href={country.maps.googleMaps}>
-                {language ? 'Google Maps' : 'Google Карти'}
+                {language ? 'Google Maps:' : 'Google Карти:'}
               </a>
             </ListItem>
             <ListItem>
               <a href={country.maps.openStreetMaps}>
-                {language ? 'Open Street Maps' : 'Open Street Карти'}
+                {language ? 'Open Street Maps:' : 'Open Street Карти:'}
               </a>
             </ListItem>
           </List>
         </ListGroup>
         <Meta>
-          {language ? 'Border Countries' : 'Прикордонні країни'}
+          {language ? 'Border Countries:' : 'Прикордонні країни:'}
           <b></b>
           {!country.borders ? (
             <span>

@@ -8,8 +8,8 @@ const InputContainer = styled.label`
   align-items: center;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  margin-bottom: 20px;
-  width: 100%;
+  margin-bottom: 12px;
+  width: 280px;
 
   @media (min-width: 767px) {
     margin-bottom: 0;

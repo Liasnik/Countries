@@ -14,19 +14,20 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px 15px;
+  padding: 22px 15px;
   color: var(--color-text);
   font-size: var(--font-size-sm);
+  gap: 20px;
 `
 
 const Title = styled(Link).attrs({
-  to: '/Countries',
+  to: '/',
 })`
   color: var(--color-text);
   font-size: var(--font-size-big);
   font-weight: var(--fw-bold);
   text-decoration: none;
-  font-weight: var(fw-bold);
+  min-width: 83px;
 `
 
 const RightBlock = styled.div`

@@ -25,7 +25,7 @@ body[data-theme='light'] {
   --color-bg: hsl(0, 0%, 98%);
   --color-ui-base: hsl(0, 0%, 100%);
   --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
-  --shadow-button: rgba(124, 132, 140, 0.2) 8px 8px 14px;
+  --shadow-button: rgba(124, 132, 140, 0.2) 2px 8px 14px;
 }
 
 body[data-theme='dark'] {
@@ -33,7 +33,7 @@ body[data-theme='dark'] {
   --color-bg: hsl(207, 26%, 17%);
   --color-ui-base: hsl(209, 23%, 22%);
   --shadow: rgba(0, 0, 0, 0.2) 0 8px 24px;
-  --shadow-button: rgba(4, 4, 4, 0.2) 0 8px 14px;
+  --shadow-button: rgba(4, 4, 4, 0.2) 2px 8px 14px;
 }
 
 body {

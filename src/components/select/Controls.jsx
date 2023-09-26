@@ -9,12 +9,13 @@ const Wrapper = styled.div`
   position: sticky;
   top: 0;
   background-color: var(--color-bg);
-  padding: 20px 15px;
+  padding: 12px 15px;
 
   @media (min-width: 767px) {
     flex-direction: row;
     justify-content: space-between;
     aline-items: center;
+    padding: 20px 15px;
   }
 `
 const options = [

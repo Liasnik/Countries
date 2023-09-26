@@ -16,7 +16,7 @@ function App() {
       <Main>
         <Routes>
           <Route
-            path="/Countries"
+            path="/"
             element={
               <HomePage
                 language={language}

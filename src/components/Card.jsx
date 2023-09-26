@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 const Wrapper = styled.article`
-  border-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  border-bottom-left-radius: var(--radius);
   background-color: var(--color-ui-base);
   box-shadow: var(--shadow);
   cursor: pointer;
-  overflow: hidden;
   margin-bottom: 30px;
 
   @media (min-width: 767px) {
