@@ -14,10 +14,14 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 15px;
+  padding: 8px 15px;
   color: var(--color-text);
   font-size: var(--font-size-sm);
   gap: 20px;
+
+  @media (min-width: 1024px) {
+    padding: 22px 0;
+  }
 `
 
 const Title = styled(Link).attrs({

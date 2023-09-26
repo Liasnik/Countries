@@ -9,20 +9,22 @@ const Wrapper = styled.div`
   position: sticky;
   top: 0;
   background-color: var(--color-bg);
-  padding: 12px 15px;
+  padding: 12px 5px;
 
-  @media (min-width: 767px) {
+  @media (min-width: 600px) {
     flex-direction: row;
     justify-content: space-between;
     aline-items: center;
+  }
+  @media (min-width: 1024px) {
     padding: 20px 15px;
   }
 `
 const options = [
   { value: 'Europe', label: 'Europe' },
-  { value: 'Americas', label: 'America' },
   { value: 'Asia', label: 'Asia' },
   { value: 'Africa', label: 'Africa' },
+  { value: 'Americas', label: 'America' },
   { value: 'Oceania', label: 'Oceania' },
   { value: 'Antarctic', label: 'Antarctic' },
 ]

@@ -1,17 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import {
-  IoArrowUp,
-  IoArrowUpCircle,
-  IoArrowUpCircleOutline,
-  IoArrowUpCircleSharp,
-} from 'react-icons/io5'
+import { IoArrowUp } from 'react-icons/io5'
 import { ALL_COUNTRIES } from '../config'
 import { List } from '../components/List'
 import { Card } from '../components/Card'
 import { Controls } from '../components/select/Controls'
-import { ScrollUp } from '../components/ScrolUp'
+import { ScrollUp } from '../components/ScrollUp'
 
 export const HomePage = ({ countries, setCountries, language }) => {
   const [countriesFiltered, setCountriesFiltered] = useState(countries)

@@ -131,6 +131,18 @@ export const DetailsCard = ({ country, language }) => {
               {language ? 'Official Name:' : 'Офіційна назва:'}{' '}
               <b>{country.name.official}</b>
             </ListItem>
+            <ListItem>
+              {language ? 'Independent:' : 'Незалежність:'}{' '}
+              <b>
+                {country.independent
+                  ? language
+                    ? 'independent'
+                    : 'незалежна'
+                  : language
+                  ? 'Dependent'
+                  : 'залежнa терріторія'}
+              </b>
+            </ListItem>
           </List>
 
           <List>
@@ -162,10 +174,7 @@ export const DetailsCard = ({ country, language }) => {
               {language ? 'Population:' : 'Населення:'}{' '}
               <b>{country.population.toLocaleString()}</b> {people}
             </ListItem>
-            <ListItem>
-              {language ? 'Independent:' : 'незалежність:'}{' '}
-              <b>{country.independent ? 'yes' : 'no'}</b>
-            </ListItem>
+
             <ListItem>
               {language ? 'Driving:' : 'Сторона дорожнього руху:'}{' '}
               <b>{country.car.side}</b>
