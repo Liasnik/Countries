@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { filterByCode } from '../config'
 
 const Wrapper = styled.section`
-  margin: 48px 0 40px;
+  margin: 48px 0 60px;
   width: 100%;
   display: grid;
   grid-template-columns: 100%;
@@ -140,7 +140,7 @@ export const DetailsCard = ({ country, language }) => {
                     : 'незалежна'
                   : language
                   ? 'Dependent'
-                  : 'залежнa терріторія'}
+                  : 'залежнa територія'}
               </b>
             </ListItem>
           </List>
@@ -184,12 +184,12 @@ export const DetailsCard = ({ country, language }) => {
           <List>
             <ListItem>
               <a href={country.maps.googleMaps}>
-                {language ? 'Google Maps:' : 'Google Карти:'}
+                {language ? 'Google Maps' : 'Google Карти'}
               </a>
             </ListItem>
             <ListItem>
               <a href={country.maps.openStreetMaps}>
-                {language ? 'Open Street Maps:' : 'Open Street Карти:'}
+                {language ? 'Open Street Maps' : 'Open Street Карти'}
               </a>
             </ListItem>
           </List>

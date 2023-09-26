@@ -25,12 +25,13 @@ const Input = styled.input.attrs({
   border: none;
   outline: none;
   margin-left: 22px;
+  width: 150px;
 `
 
 const Search = ({ search, setSearch, language }) => {
   return (
     <InputContainer>
-      <IoSearch />
+      <IoSearch size="18px" />
       <Input
         onChange={(e) => setSearch(e.target.value)}
         value={search}

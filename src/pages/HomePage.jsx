@@ -11,6 +11,7 @@ import { ScrollUp } from '../components/ScrollUp'
 export const HomePage = ({ countries, setCountries, language }) => {
   const [countriesFiltered, setCountriesFiltered] = useState(countries)
   const navigate = useNavigate()
+  const [error, setError] = useState([])
 
   const handleSearch = (search, region) => {
     let data = [...countries]
@@ -32,13 +33,40 @@ export const HomePage = ({ countries, setCountries, language }) => {
   }, [countries])
 
   useEffect(() => {
-    !countries.length &&
-      axios.get(ALL_COUNTRIES).then(({ data }) => setCountries(data))
+    if (!countries.length) {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get(ALL_COUNTRIES)
+
+          setCountries(response.data)
+        } catch (error) {
+          console.error('Error loading data:', error)
+          setError([
+            error.request.statusText,
+            ' ...тобто не знайдено нічого чомусь. Може сервер зламався, або ще щось...',
+          ])
+        }
+      }
+      setError([])
+      fetchData()
+    }
   }, [countries.length, setCountries])
 
   return (
     <div>
       <Controls onSearch={handleSearch} language={language} />
+      {error && (
+        <div
+          style={{
+            display: 'flex',
+            width: 'fit-content',
+            margin: '0 auto',
+            fontSize: '22px',
+          }}
+        >
+          {error}
+        </div>
+      )}
       <List>
         {countriesFiltered.map((country) => (
           <Card

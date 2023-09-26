@@ -32,7 +32,7 @@ const options = [
 export const Controls = ({ onSearch, language }) => {
   const [search, setSearch] = useState('')
   const [region, setRegion] = useState('')
-  console.log(region)
+
   useEffect(() => {
     const regionValue = region?.value || ''
     onSearch(search, regionValue)
