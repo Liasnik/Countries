@@ -45,9 +45,7 @@ export const Controls = ({ onSearch, language }) => {
       <Search search={search} setSearch={setSearch} language={language} />
       <CustomSelect
         options={options}
-        placeholder={
-          language ? 'Filter by region' : 'Відфільртувати по регіону'
-        }
+        placeholder={language ? 'Filter by region' : 'Фільртувати по регіону'}
         isClearable
         isSearchable={false}
         value={region}

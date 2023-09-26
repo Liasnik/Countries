@@ -7,11 +7,14 @@ import { List } from '../components/List'
 import { Card } from '../components/Card'
 import { Controls } from '../components/select/Controls'
 import { ScrollUp } from '../components/ScrollUp'
+import { Loader } from '../components/Loader'
+import { Error } from '../components/Error'
 
 export const HomePage = ({ countries, setCountries, language }) => {
   const [countriesFiltered, setCountriesFiltered] = useState(countries)
   const navigate = useNavigate()
   const [error, setError] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   const handleSearch = (search, region) => {
     let data = [...countries]
@@ -39,34 +42,26 @@ export const HomePage = ({ countries, setCountries, language }) => {
           const response = await axios.get(ALL_COUNTRIES)
 
           setCountries(response.data)
+          setIsLoading(false)
         } catch (error) {
           console.error('Error loading data:', error)
           setError([
             error.request.statusText,
             ' ...тобто не знайдено нічого чомусь. Може сервер зламався, або ще щось...',
           ])
+          setIsLoading(false)
         }
       }
       setError([])
       fetchData()
-    }
+    } else setIsLoading(false)
   }, [countries.length, setCountries])
 
   return (
     <div>
       <Controls onSearch={handleSearch} language={language} />
-      {error && (
-        <div
-          style={{
-            display: 'flex',
-            width: 'fit-content',
-            margin: '0 auto',
-            fontSize: '22px',
-          }}
-        >
-          {error}
-        </div>
-      )}
+      {isLoading && <Loader />}
+      {error && <Error>{error}</Error>}
       <List>
         {countriesFiltered.map((country) => (
           <Card

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { filterByCode } from '../config'
+import { Error } from './Error'
 
 const Wrapper = styled.section`
   margin: 48px 0 60px;
@@ -101,12 +102,15 @@ const Tag = styled.span`
 export const DetailsCard = ({ country, language }) => {
   const [bordering, setBordering] = useState([])
   const navigate = useNavigate()
+  const [error, setError] = useState('')
 
   useEffect(() => {
     if (country.borders)
       axios
         .get(filterByCode(country.borders))
         .then(({ data }) => setBordering(data))
+        .catch((error) => setError(error.message))
+    setError('')
   }, [country.borders])
 
   let people
@@ -197,6 +201,7 @@ export const DetailsCard = ({ country, language }) => {
         <Meta>
           {language ? 'Border Countries:' : 'Прикордонні країни:'}
           <b></b>
+          {error && <Error>{error}</Error>}
           {!country.borders ? (
             <span>
               {language
